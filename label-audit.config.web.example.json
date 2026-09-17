@@ -8,7 +8,7 @@
   "dbSource": {
     "url": "https://<backend-host>/api/language/en/true",
     "headers": {
-      "Authorization": "Bearer <token>"
+      "Authorization": "Bearer ${LABEL_API_TOKEN}"
     },
     "arrayPath": "data",
     "keyField": "key",

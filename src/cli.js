@@ -44,7 +44,7 @@ export function runCli(argv) {
           'Config is missing "dbSource" (url/headers/arrayPath/keyField/platformFlagFields)'
         );
       }
-      const dbKeys = await fetchDbKeys(config.dbSource);
+      const dbKeys = await fetchDbKeys(resolveEnvPlaceholders(config.dbSource));
       writeJson(opts.out, dbKeys);
       console.log(`[fetch-db] ${dbKeys.keys.length} keys -> ${opts.out}`);
     });
@@ -81,3 +81,18 @@ function readJson(filePath) {
 function writeJson(filePath, data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
 }
+
+// Lets config values reference env vars (e.g. "Bearer ${LABEL_API_TOKEN}") so secrets never get committed.
+function resolveEnvPlaceholders(value) {
+  if (typeof value === "string") {
+    return value.replace(/\$\{([A-Z0-9_]+)\}/gi, (match, name) => process.env[name] ?? match);
+  }
+  if (Array.isArray(value)) return value.map(resolveEnvPlaceholders);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([k, v]) => [k, resolveEnvPlaceholders(v)])
+    );
+  }
+  return value;
+}
+
