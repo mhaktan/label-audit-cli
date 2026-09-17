@@ -1,0 +1,31 @@
+{
+  "name": "label-audit-cli",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Standalone CLI to detect unused/missing backend label keys by statically scanning frontend source (web + mobile) repos. Not part of any app bundle.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/<your-github-username>/label-audit-cli.git"
+  },
+  "keywords": ["i18n", "labels", "translation", "cli", "dead-code"],
+  "files": ["bin", "src", "*.example.json", "README.md", "LICENSE"],
+  "bin": {
+    "label-audit": "./bin/label-audit.js"
+  },
+  "scripts": {
+    "scan": "node ./bin/label-audit.js scan",
+    "diff": "node ./bin/label-audit.js diff",
+    "fetch-db": "node ./bin/label-audit.js fetch-db"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.28.0",
+    "@babel/traverse": "^7.28.0",
+    "commander": "^12.1.0",
+    "fast-glob": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
