@@ -6,15 +6,21 @@
   "translationFnNames": ["t"],
   "parserPlugins": [],
   "dbSource": {
-    "url": "https://<backend-host>/api/language/en/true",
+    "url": "https://<backend-host>/api/language",
     "headers": {
       "Authorization": "Bearer ${LABEL_API_TOKEN}"
     },
     "arrayPath": "data",
     "keyField": "key",
     "platformFlagFields": {
-      "web": "isWebLabel",
-      "mobile": "isMobileLabel"
+      "web": "forUI",
+      "mobile": "forMobile"
+    },
+    "pagination": {
+      "pageParam": "Page",
+      "pageSizeParam": "PageSize",
+      "pageSize": 500,
+      "totalCountPath": "totalCount"
     }
   }
 }

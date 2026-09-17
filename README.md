@@ -68,7 +68,8 @@ in this folder). Key fields:
 | `rootDir` | Source root, resolved relative to the config file. |
 | `sourceGlobs` | Glob patterns to scan. |
 | `translationFnNames` | Function/property names treated as translation calls (default `["t"]`) — adjust if the mobile repo calls it differently. |
-| `dbSource.platformFlagFields` | Maps our internal platform names (`web`, `mobile`) to the actual boolean field names returned by the backend export endpoint. **Update these to match the real API field names** — the examples use placeholders. |
+| `dbSource.platformFlagFields` | Maps our internal platform names (`web`, `mobile`) to the actual boolean field names returned by the backend export endpoint (e.g. `{ "web": "forUI", "mobile": "forMobile" }`). |
+| `dbSource.pagination` | Set this if the label list endpoint is paginated and has no server-side platform filter (common case) — the tool pages through the full list and filters by `platformFlagFields` client-side. |
 
 ## Recommended workflow
 
