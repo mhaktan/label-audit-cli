@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/<your-github-username>/label-audit-cli.git"
+    "url": "git+https://github.com/mhaktan/label-audit-cli.git"
   },
   "keywords": ["i18n", "labels", "translation", "cli", "dead-code"],
   "files": ["bin", "src", "*.example.json", "README.md", "LICENSE"],
